@@ -9,17 +9,7 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <Product 
-        name="Product Name" 
-        description="This is a short description of the product." 
-        sku="123456789" 
-        price={99.99} 
-        quantity={10} 
-        reviews={[
-          { user: 'John Doe', date: '2022-03-01', review: 'Great product!' },
-          { user: 'Jane Doe', date: '2022-03-02', review: 'I love it!' },
-        ]}
-      />
+      <Product sku="123456789" />
     </main>
   )
 }
