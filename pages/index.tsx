@@ -15,7 +15,10 @@ export default function Home() {
         sku="123456789" 
         price={99.99} 
         quantity={10} 
-        reviews={5} 
+        reviews={[
+          { user: 'John Doe', date: '2022-03-01', review: 'Great product!' },
+          { user: 'Jane Doe', date: '2022-03-02', review: 'I love it!' },
+        ]}
       />
     </main>
   )
