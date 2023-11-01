@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface CartItem {
   id: string;
@@ -7,19 +7,27 @@ interface CartItem {
   quantity: number;
 }
 
-const Cart: React.FC = () => {
+interface CartProps {
+  cartCount: number;
+  setCartCount: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Cart: React.FC<CartProps> = ({ cartCount, setCartCount }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const handleCartClick = () => {
+  useEffect(() => {
     fetch('/api/cart')
       .then(response => response.json())
-      .then(data => setCartItems(data));
-  };
+      .then(data => {
+        setCartItems(data);
+        setCartCount(data.length);
+      });
+  }, [setCartCount]);
 
   return (
     <div className="fixed top-0 right-0 p-4">
-      <button onClick={handleCartClick} className="bg-blue-500 text-white rounded px-4 py-2">
-        Cart ({cartItems.length})
+      <button className="bg-blue-500 text-white rounded px-4 py-2">
+        Cart ({cartCount})
       </button>
       {cartItems.length > 0 && (
         <div className="mt-2 bg-white shadow-lg rounded-lg p-4">
